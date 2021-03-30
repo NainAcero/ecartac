@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 class Producto extends Model
 {
     use Searchable;
-    
+
     protected $fillable = [
         'portada','estado'
     ];

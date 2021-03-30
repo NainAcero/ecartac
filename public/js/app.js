@@ -2171,6 +2171,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['idrest', 'celular', 'portada', 'delivery'],
@@ -2187,7 +2223,13 @@ __webpack_require__.r(__webpack_exports__);
       newCat: null,
       pedidos: '',
       listwsp: [],
-      textBusc: ""
+      textBusc: "",
+      is_modal_visible: false,
+      model: {
+        nombre: '',
+        telefono: '',
+        direccion: ''
+      }
     };
   },
   created: function created() {
@@ -2205,6 +2247,12 @@ __webpack_require__.r(__webpack_exports__);
   //     }
   // },
   methods: {
+    showModal: function showModal() {
+      this.is_modal_visible = true;
+      this.$nextTick(function () {
+        $('#modal').modal('show');
+      });
+    },
     getCateProd: function getCateProd() {
       var _this2 = this;
 
@@ -2225,6 +2273,17 @@ __webpack_require__.r(__webpack_exports__);
       if (this.textBusc == '') {
         this.getCateProd();
       }
+    },
+    enviarDelivery: function enviarDelivery() {
+      var data = [];
+      this.listwsp.forEach(function (element) {
+        data.push({
+          "name": element.split("*")[1],
+          "cantidad": element.split("*")[3]
+        });
+      });
+      console.log(data);
+      console.log(this.model);
     },
     // persist() {
     //     localStorage.name = this.name;
@@ -38543,7 +38602,270 @@ var render = function() {
                                     ),
                                     _c("i", { staticClass: "fab fa-whatsapp" })
                                   ]
-                                )
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "mr-2 ml-2 btn btn-info float-right",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showModal()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            Delivery\n                                            "
+                                    ),
+                                    _c("i", { staticClass: "fab fa-whatsapp" })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.is_modal_visible
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass: "modal fade",
+                                        attrs: { id: "modal" }
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "modal-dialog modal-dialog-centered",
+                                            attrs: { role: "document" }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "modal-content" },
+                                              [
+                                                _vm._m(1),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "modal-body" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group"
+                                                      },
+                                                      [
+                                                        _c("label", [
+                                                          _vm._v("Su nombre")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm.model
+                                                                  .nombre,
+                                                              expression:
+                                                                "model.nombre"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "text"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.model.nombre
+                                                          },
+                                                          on: {
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.model,
+                                                                "nombre",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group"
+                                                      },
+                                                      [
+                                                        _c("label", [
+                                                          _vm._v("Teléfono")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm.model
+                                                                  .telefono,
+                                                              expression:
+                                                                "model.telefono"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "text"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.model.telefono
+                                                          },
+                                                          on: {
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.model,
+                                                                "telefono",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "form-group"
+                                                      },
+                                                      [
+                                                        _c("label", [
+                                                          _vm._v("Dirección")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm.model
+                                                                  .direccion,
+                                                              expression:
+                                                                "model.direccion"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "text"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.model
+                                                                .direccion
+                                                          },
+                                                          on: {
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.model,
+                                                                "direccion",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass: "modal-footer"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "btn btn-secondary",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-dismiss":
+                                                            "modal"
+                                                        }
+                                                      },
+                                                      [_vm._v("Close")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "btn btn-primary",
+                                                        attrs: {
+                                                          type: "button",
+                                                          "data-dismiss":
+                                                            "modal"
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.enviarDelivery()
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v("Delivery")]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
                               ]
                             )
                           ])
@@ -38820,7 +39142,7 @@ var render = function() {
       _c("aside", { staticClass: "col-md-3" }, [
         _c("div", { staticClass: "card" }, [
           _c("article", { staticClass: "filter-group" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "div",
@@ -38832,7 +39154,7 @@ var render = function() {
                 _c("div", { staticClass: "card-body" }, [
                   _vm.restdelivery != ""
                     ? _c("figure", { staticClass: "itemside" }, [
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("figcaption", { staticClass: "info" }, [
                           _c("h6", { staticClass: "title" }, [
@@ -38873,6 +39195,31 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Sus datos")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   },
   function() {

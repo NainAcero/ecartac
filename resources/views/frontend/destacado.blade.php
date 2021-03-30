@@ -22,8 +22,10 @@
                     @endif
                 </a>
                 <figcaption class="info-wrap">
-                        <a href="{{ url('productos/'.$item->slug)}}" class="title" data-toggle="tooltip" title="{{$item->ingredientes}}"><b>{{$item->categoria->categoria}}:</b> {{$item->producto}}</a>
 
+                        {{-- {{ $item->tienda->categorias[0]->categoria }} --}}
+
+                        <a href="{{ url('productos/'.$item->slug)}}" class="title" data-toggle="tooltip" title="{{$item->ingredientes}}"><b>{{$item->categoria->categoria}}:</b> {{$item->producto}}</a>
 
                         <small><p class="text-muted">{{$item->tienda->tienda}}</p></small>
                         {{-- <div class="rating-wrap">

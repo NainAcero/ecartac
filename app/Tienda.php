@@ -18,4 +18,5 @@ class Tienda extends Model
     {
         return $this->hasMany(Categoria::class);
     }
+
 }

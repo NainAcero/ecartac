@@ -41,7 +41,43 @@
                                                 Enviar mi Pedido
                                                 <i class="fab fa-whatsapp"></i>
                                             </a>
+                                            <a @click="showModal()" class="mr-2 ml-2 btn btn-info float-right">
+                                                Delivery
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+                                            <!-- @click="enviarDelivery()" -->
+                                            <div v-if="is_modal_visible" id="modal" class="modal fade">
+                                                 <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Sus datos</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label >Su nombre</label>
+                                                            <input type="text" v-model="model.nombre" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label >Teléfono</label>
+                                                            <input type="text" v-model="model.telefono" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label >Dirección</label>
+                                                            <input type="text" v-model="model.direccion" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="enviarDelivery()">Delivery</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -198,6 +234,12 @@
                 pedidos:'',
                 listwsp:[],
                 textBusc: "",
+                is_modal_visible: false,
+                model: {
+                    nombre: '',
+                    telefono: '',
+                    direccion: '',
+                }
             }
         },
         created(){
@@ -214,6 +256,13 @@
         //     }
         // },
         methods:{
+
+            showModal() {
+                this.is_modal_visible = true;
+                this.$nextTick(() => {
+                    $('#modal').modal('show');
+                });
+            },
             getCateProd(){
                 // this.valuemultisel = {iglesia:'Buscar...', codigo:'', manual_online:''}
                 axios.get('../getcategoria?category='+this.categoriaid+'&key='+this.idrest).then(res=>{
@@ -231,6 +280,19 @@
                 if(this.textBusc == ''){
                     this.getCateProd();
                 }
+            },
+            enviarDelivery() {
+
+                var data = []
+
+                this.listwsp.forEach(element => {
+                    data.push({
+                        "name": element.split("*")[1],
+                        "cantidad": element.split("*")[3]
+                    })
+                });
+                console.log(data)
+                console.log(this.model)
             },
             // persist() {
             //     localStorage.name = this.name;
