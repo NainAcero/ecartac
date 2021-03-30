@@ -10,7 +10,7 @@
 @section('content')
 
 <div class="row">
-    
+
     <div class="col-md-12">
         {{-- <div class="card-banner">
             <div class="card-body" style="height:250px; background-image: url('{{asset($galeriimagen->imagen_seg)}}');"> </div>
@@ -20,8 +20,8 @@
                     <h3 class="card-title">{{$tienda->tienda}} </h3>
                 </div>
                 <br>
-                <a href="https://wa.me/51{{$tienda->celular}}?text=Hola {{$tienda->tienda}} deseo más información..." 
-                    target=".../" 
+                <a href="https://wa.me/51{{$tienda->celular}}?text=Hola {{$tienda->tienda}} deseo más información..."
+                    target=".../"
                     class="btn btn-success btn-sm">
                         </i> Info <i class="fab fa-whatsapp"></i>
                 </a>
@@ -43,19 +43,21 @@
             {{asset($tienda->portada)}}
         @stop
 <!-- ============================ COMPONENT BANNER 5  ================================= -->
-      <div class="card-banner img-fluid rounded" style="height:400px; background-image: url('{{asset($galeriimagen->imagen_pri)}}');">
+      {{-- <div class="card-banner img-fluid rounded" style="height:400px; background-image: url('{{asset($galeriimagen->imagen_pri)}}');"> --}}
+        <div class="card-banner img-fluid rounded" style="height:400px; background-image: url('{{asset("ecom/images/banners/slide-lg-2.jpg")}}');">
         <article class="text-bottom">
             <div class="icontext mb-3">
-                <img class="icon icon-md rounded-circle" src="{{asset($tienda->portada)}}">
+                {{-- <img class="icon icon-md rounded-circle" src="{{asset($tienda->portada)}}"> --}}
+                <img src="{{asset('img/elpadrino-logo.png')}}" class="icon icon-md rounded-circle">
                 <h3 class="card-title">{{$tienda->tienda}} </h3>
             </div>
-            
+
             <p>
                 {{$tienda->descripcion}}
             </p>
-            
-            <a href='https://wa.me/51{{$tienda->celular}}?text=Hola "{{$tienda->tienda}}", ...'  
-                target=".../" 
+
+            <a href='https://wa.me/51{{$tienda->celular}}?text=Hola "{{$tienda->tienda}}", ...'
+                target=".../"
                 class="btn btn-success ">
                     </i> Info <i class="fab fa-whatsapp"></i>
             </a>
@@ -73,10 +75,10 @@
       </div>
 <!-- ============================ COMPONENT BANNER 5  END .// =========================== -->
     </div> <!-- col.// -->
-    
+
 </div>
 
-<style>  
+<style>
 </style>
 {{-- <section  class="padding-bottom-sm">
     <h3 class="doc-subtitle">Promociones / Ofertas </h3>
@@ -101,14 +103,14 @@
                 </figcaption>
             </figure>
         </div>
-        
+
     </div>
 
 </section> --}}
 
 <section class="section-content padding-y">
-    
-    <div class="" id="app">       
+
+    <div class="" id="app">
         <filtrar-categoria idrest='{{$tienda->id}}' celular={{$tienda->celular}} portada={{$tienda->portada}} delivery="{{$tienda->delivery}}"></filtrar-categoria>
     </div> <!-- container .//  -->
 </section>

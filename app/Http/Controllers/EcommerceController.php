@@ -45,11 +45,11 @@ class EcommerceController extends Controller
         // dd($request->all());
         if ($request->tipo == 'P') {
             $categorias = Categoria::where('estado', 1)->orderBy('categoria')->get();
-            
+
             // $productos = Producto::where('producto','LIKE', "%$request->data%")->where('estado', 1)->paginate(18);
 
             $productos = \App\Producto::search($request->data)->paginate(18);
-    
+
             $tiendas = '';
             $galerias = '';
             return view('frontend.filtrados.productos', compact('productos','categorias','tiendas','galerias'));
@@ -66,14 +66,14 @@ class EcommerceController extends Controller
             return view('frontend.filtrados.tiendas', compact('tiendas','categorias'));
         }else if($request->tipo == 'O'){
             $categorias = Categoria::where('estado', 1)->orderBy('categoria')->get();
-            
+
             $productos = Producto::where('producto','LIKE', "%$request->data%")
             ->where('oferta', 1)
             ->where('estado', 1)
             ->paginate(18);
 
             // $productos = \App\Producto::search($request->data)->paginate(18);
-    
+
             $tiendas = '';
             $galerias = '';
             return view('frontend.filtrados.productos', compact('productos','categorias','tiendas','galerias'));
@@ -118,7 +118,7 @@ class EcommerceController extends Controller
             }));
         }))
         ->firstorfail();
-        
+
         $categorias = Categoria::where('estado', 1)->orderBy('categoria')->get();
         // dd($tienda);
         // $prodcat = Productocategoria::where('categoria_id', $cate->id)->pluck('producto_id');
@@ -167,7 +167,37 @@ class EcommerceController extends Controller
         }
         return compact('categoria');
     }
-    
+
+    public function getBuscador_rest(Request $request) {
+        $buscar = $request->buscar;
+
+        if ($request->category == '0') {
+            $categoria = Categoria::where('tienda_id', $request->key)
+            ->select('id','categoria')
+            ->where('estado', 1)
+            ->with(array('productos'=>function ($query) use ($buscar){
+                $query->select('id','slug','portada','producto','ingredientes','precio','categoria_id');
+                $query->where('ingredientes', 'like', '%'.$buscar.'%');
+                $query->orWhere('ingredientes', 'like', '%'.$buscar.'%');
+                $query->where('estado', 1);
+            }))
+            ->get();
+        }else{
+            $categoria = Categoria::where('id', $request->category)
+            ->select('id','categoria')
+            ->where('tienda_id', $request->key)
+            ->where('estado', 1)
+            ->with(array('productos'=>function ($query) use ($buscar){
+                $query->select('id','slug','portada','producto','ingredientes','precio','categoria_id');
+                $query->where('ingredientes', 'like', '%'.$buscar.'%');
+                $query->orWhere('ingredientes', 'like', '%'.$buscar.'%');
+                $query->where('estado', 1);
+            }))
+            ->get();
+        }
+        return compact('categoria');
+    }
+
     public function filtrarTiendas($slug)
     {
         $cc = Galeria::where('slug', $slug)->firstorfail();
@@ -176,71 +206,6 @@ class EcommerceController extends Controller
         return view('frontend.filtrados.tiendas', compact('tiendas','categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function lectorqr($qr)
     {
         $tiendas = Tienda::where('codigoqr',$qr)->where('estado', 1)->firstorfail();

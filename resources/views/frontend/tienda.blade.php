@@ -17,13 +17,13 @@
         <ul class="row no-gutters bordered-cols">
             @foreach ($tiendas as $item)
             <li class="col-6 col-lg-3 col-md-4">
-                <a href="{{url('r/'.$item->slug)}}" class="item"> 
+                <a href="{{url('r/'.$item->slug)}}" class="item">
                     <div class="card-body">
                         <h6 class="title">{{$item->tienda}}</h6>
                         @if ($item->portada)
-                            <img class="img-sm float-right" src="{{asset($item->portada)}}"> 
+                            <img class="img-sm float-right" src="{{asset($item->portada)}}">
                         @else
-                            <img class="img-sm float-right" src="{{asset('ecom/images/shop.png')}}"> 
+                            <img class="img-sm float-right" src="{{asset('ecom/images/shop.png')}}">
                         @endif
                         <a href="{{$item->mapa}}" target="../" class="text-muted"><i class="fa fa-map-marker-alt"></i>{{$item->direccion}}</a>
                     </div>
@@ -41,13 +41,15 @@
     <header class="section-heading heading-line">
         <h4 class="title-section text-uppercase">Restaurantes</h4>
     </header>
-    
+
     <div class="row">
         @foreach ($tiendas as $item)
         <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-            <a href="{{url('r/'.$item->slug)}}" class="item"> 
+            <a href="{{url('r/'.$item->slug)}}" class="item">
             <article class="card card-product-grid card-lg">
-              <img src="{{asset($item->portada)}}" class="card-img-top">
+              {{-- <img src="{{asset($item->portada)}}" class="card-img-top"> --}}
+              <img src="{{asset('img/elpadrino-logo.png')}}" class="card-img-top">
+
               <div class="card-body">
                 <h6 class="title text-uppercase">{{$item->tienda}}</h6>
                 <p class="small text-muted">{{$item->direccion}}</p>
@@ -58,6 +60,6 @@
         @endforeach
     </div> <!-- row.// -->
     {{-- {{$tiendas->appends(['restaurantes' => $tiendas->currentPage()])->links()}}     --}}
-    
+
 </section>
 @endif

@@ -33,6 +33,8 @@ Route::get('r/{slug}', 'EcommerceController@listarTiendaProducto');
 Route::get('qr/{qr}', 'EcommerceController@lectorqr');
 Route::get('catemenu/{id}', 'EcommerceController@listarCategProducto_rest');
 Route::get('getcategoria', 'EcommerceController@getCategoria_rest');
+Route::get('getbuscador', 'EcommerceController@getBuscador_rest');
+Route::get('getFilterPrice', 'EcommerceController@getFilterPrice_rest');
 
 // Route::get('/productos', function () {
 //     return view('frontend.detalleproducto');
@@ -54,6 +56,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tiendas', 'TiendaController')->middleware('role:Admin');
     Route::resource('products', 'ProductoController')->middleware('role:Admin|Tienda');
     Route::resource('categorias', 'CategoriaController')->middleware('role:Admin|Tienda');
-    Route::post('categoria/update-order','CategoriaController@updateOrder')->middleware('role:Admin|Tienda'); 
-    
+    Route::post('categoria/update-order','CategoriaController@updateOrder')->middleware('role:Admin|Tienda');
+
 });

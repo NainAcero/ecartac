@@ -35,10 +35,10 @@
                                     </td>
                                     <td colspan="3">
                                         <div class="align-self-end ml-auto">
-                                            <a class="btn btn-success float-right" 
-                                                :href="'https://wa.me/51'+ restcelular + '?text=Hola, deseo realizar este pedido. '+listwsp +'%0D%0A%0D%0A Gracias'" 
+                                            <a class="btn btn-success float-right"
+                                                :href="'https://wa.me/51'+ restcelular + '?text=Hola, deseo realizar este pedido. '+listwsp +'%0D%0A%0D%0A Gracias'"
                                                 target="../" >
-                                                Enviar mi Pedido 
+                                                Enviar mi Pedido
                                                 <i class="fab fa-whatsapp"></i>
                                             </a>
                                         </div>
@@ -69,21 +69,29 @@
                                 <span class="cat">{{cat.xprod}} {{cat.xprecio}}</span> <button @click="removeCart(n)">Remove</button>
                                 </p>
                             </div>
-                            
+
                             <p>
-                                <input v-model="newCat"> 
+                                <input v-model="newCat">
                                 <button @click="addProducto()">Add Cat</button>
                             </p>
                         </div> -->
                         <select class="mr-2 form-control" v-model="categoriaid" @change="getCateProd()">
                             <option value="0">Ver toda la Carta</option>
                             <option v-for="(categoria, index) in listCategoria" :value="categoria.id">{{categoria.categoria}} </option>
-                        </select>  
-                        
+                        </select>
+                        <div class="input-group">
+                            <input type="text" v-model="textBusc" @change="getCatProdInput()" class="form-control" placeholder="Buscar Producto">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary" @click="getBuscProd()" type="submit">
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </div>
+                        </div>
+
                     </div>
                 </header>
-                            
-                <article v-for="(categoria, index) in categorias" class="card">
+
+                <article v-for="(categoria, index) in categorias" class="card" v-if="categoria.productos.length > 0">
                     <header class="card-header text-center">
                         <h3>
                             <strong class="card-title mb-4">{{categoria.categoria.replace(/\b\w/g, l => l.toUpperCase())}}</strong>
@@ -95,16 +103,17 @@
                         <tr v-for="(item, index) in categoria.productos">
                             <td width="20">
                                 <a :href="'../productos/'+ item.slug">
-                                    <img v-if="item.portada" class="icon icon-md rounded-circle" :src="'../'+item.portada">
-                                    <img v-else class="icon icon-md rounded-circle" :src="'../' + restportada">
+                                    <!-- <img v-if="item.portada" class="icon icon-md rounded-circle" :src="'../'+item.portada">
+                                    <img v-else class="icon icon-md rounded-circle" :src="'../' + restportada"> -->
+                                    <img class="icon icon-md rounded-circle" :src="'../img/elpadrino-logo.png'">
                                 </a>
                             </td>
-                            <td> 
-                                <h6 class="title mb-0"><a :href="'../productos/'+ item.slug"> {{item.producto}}  </a>  <span v-if="item.oferta" class="text-warning mr-2" data-toggle="tooltip" title="Oferta/Promoción"><i class="fas fa-tag"></i></span></h6> 
+                            <td>
+                                <h6 class="title mb-0"><a :href="'../productos/'+ item.slug"> {{item.producto}}  </a>  <span v-if="item.oferta" class="text-warning mr-2" data-toggle="tooltip" title="Oferta/Promoción"><i class="fas fa-tag"></i></span></h6>
                                 <small class="text-muted"><p>{{item.ingredientes}}</p></small>
                                 <button class="btn btn-outline-info btn-sm float-right" @click="addProducto(item)">Añadir <i class="fa fa-shopping-cart"></i></button>
                                 <a class="btn btn-outline-success btn-sm float-right mr-2" :href="'https://wa.me/51'+ restcelular + '?text=Hola, deseo realizar este pedido. %0D%0A * '+ item.producto + '* %0D%0A *Precio:* S/' + item.precio+ '%0D%0A%0D%0A Gracias'" target="../" >Delivery <i class="fab fa-whatsapp"></i></a>
-                                <var class="price text-muted float-right  mr-2">S/ {{item.precio}}</var> 
+                                <var class="price text-muted float-right  mr-2">S/ {{item.precio}}</var>
                             </td>
                         </tr>
                         </tbody></table>
@@ -131,7 +140,7 @@
                                     </div>
                                     </div>
                                 </form>
-                                
+
                                 <ul class="list-menu">
                                     <li><a href="#">Promociones  </a></li>
                                     <li><a href="#">Delivery </a>
@@ -187,7 +196,8 @@
                 carrito:[],
                 newCat:null,
                 pedidos:'',
-                listwsp:[]
+                listwsp:[],
+                textBusc: "",
             }
         },
         created(){
@@ -196,7 +206,7 @@
                 this.categorias = res.data.categprod;
                 this.listCategoria = res.data.categprod;
             })
-            
+
         },
         // computed:{
         //     buscarMenu: function () {
@@ -208,7 +218,19 @@
                 // this.valuemultisel = {iglesia:'Buscar...', codigo:'', manual_online:''}
                 axios.get('../getcategoria?category='+this.categoriaid+'&key='+this.idrest).then(res=>{
                     this.categorias = res.data.categoria;
+                    console.log(res);
                 })
+            },
+            getBuscProd() {
+
+                axios.get('../getbuscador?category='+this.categoriaid+'&buscar='+this.textBusc+'&key='+this.idrest).then(res=>{
+                    this.categorias = res.data.categoria;
+                })
+            },
+            getCatProdInput() {
+                if(this.textBusc == ''){
+                    this.getCateProd();
+                }
             },
             // persist() {
             //     localStorage.name = this.name;
@@ -226,7 +248,7 @@
                     'xportada':val.portada,
                     'xslug':val.slug,
                     'xcantidad':'1'
-                    
+
                 }
                 this.carrito.push(this.pedidos);
                 this.newCat = '';
@@ -250,7 +272,7 @@
                 });
                 this.saveCarts();
             }
-            
+
         },
         mounted() {
             // console.log('Component mounted.')
