@@ -3,7 +3,7 @@
     <header class="section-heading heading-line">
         <h4 class="title-section text-uppercase">Recomendados</h4>
     </header>
-    
+
     <div class="row row-sm">
         @foreach ($productos as $item)
         <div class="col-xl-2 col-lg-3 col-md-4 col-6">
@@ -14,23 +14,25 @@
 
                 <a href="{{ url('productos/'.$item->slug)}}" class="img-wrap" style="border-top-left-radius: 5px;border-top-right-radius: 5px;" data-toggle="tooltip" title="{{$item->ingredientes}}">
                     @if ($item->portada)
-                        <img src="{{asset($item->portada)}}">
+                        {{-- <img src="{{asset($item->portada)}}"> --}}
+                        <img src="{{asset('img/elpadrino-logo.png')}}">
                     @else
-                        <img src="{{asset($item->tienda->portada)}}"> 
+                        {{-- <img src="{{asset($item->tienda->portada)}}">  --}}
+                        <img src="{{asset('img/elpadrino-logo.png')}}">
                     @endif
                 </a>
                 <figcaption class="info-wrap">
                         <a href="{{ url('productos/'.$item->slug)}}" class="title" data-toggle="tooltip" title="{{$item->ingredientes}}"><b>{{$item->categoria->categoria}}:</b> {{$item->producto}}</a>
-                        
-                        
+
+
                         <small><p class="text-muted">{{$item->tienda->tienda}}</p></small>
                         {{-- <div class="rating-wrap">
                             <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active"> 
+                                <li style="width:80%" class="stars-active">
                                     <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
                                 </li>
                                 <li>
-                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+                                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
                                 </li>
                             </ul>
                         </div> --}}
@@ -60,7 +62,7 @@
                     </div>
                 </figcaption>
             </div> --}}
-        </div>	
+        </div>
         @endforeach
     </div> <!-- row.// -->
     {{ $productos->appends(['tipo'=>request('tipo'), 'data' => request('data')])->links() }}
