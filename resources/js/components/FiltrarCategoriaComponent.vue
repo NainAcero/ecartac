@@ -399,6 +399,7 @@
                     }
                 });
                 this.saveCarts();
+                this.calcularTotal();
             }
 
         },
