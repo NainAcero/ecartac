@@ -2207,6 +2207,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['idrest', 'celular', 'portada', 'delivery'],
@@ -2225,6 +2269,8 @@ __webpack_require__.r(__webpack_exports__);
       listwsp: [],
       textBusc: "",
       is_modal_visible: false,
+      is_second_modal: false,
+      total: 0.00,
       model: {
         nombre: '',
         telefono: '',
@@ -2275,15 +2321,36 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     enviarDelivery: function enviarDelivery() {
-      var data = [];
-      this.listwsp.forEach(function (element) {
-        data.push({
-          "name": element.split("*")[1],
-          "cantidad": element.split("*")[3]
-        });
+      this.calcularTotal();
+      this.is_second_modal = true;
+    },
+    confirmDelivery: function confirmDelivery() {
+      var aux = 0;
+      this.carrito.forEach(function (element) {
+        if (element.xprecioNew == null) {
+          toastr__WEBPACK_IMPORTED_MODULE_0___default.a.error("Ingrese precios: " + element.xprod);
+          aux = 1;
+          return;
+        }
       });
-      console.log(data);
-      console.log(this.model);
+      if (aux) return;
+      console.log(this.carrito);
+      toastr__WEBPACK_IMPORTED_MODULE_0___default.a.success("Pedido Enviado con éxito");
+      this.is_modal_visible = false;
+      $('#modal').modal('hide');
+    },
+    calcularTotal: function calcularTotal() {
+      var _this4 = this;
+
+      this.total = 0.00;
+      this.carrito.forEach(function (element) {
+        if (element.xprecioNew != null) {
+          _this4.total += parseFloat(element.xprecioNew);
+        }
+      });
+    },
+    regresarForm: function regresarForm() {
+      this.is_second_modal = false;
     },
     // persist() {
     //     localStorage.name = this.name;
@@ -2316,12 +2383,12 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.setItem('carrito', parsed);
     },
     cantidadPedidos: function cantidadPedidos() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.listwsp = [];
       this.carrito.forEach(function (val) {
-        if (val.xmaster == _this4.idrest) {
-          _this4.listwsp.push('%0D%0A • *' + val.xprod + '* | _Cant_=*' + val.xcantidad + '*');
+        if (val.xmaster == _this5.idrest) {
+          _this5.listwsp.push('%0D%0A • *' + val.xprod + '* | _Cant_=*' + val.xcantidad + '*');
         }
       });
       this.saveCarts();
@@ -38643,177 +38710,430 @@ var render = function() {
                                               "div",
                                               { staticClass: "modal-content" },
                                               [
-                                                _vm._m(1),
+                                                _vm.is_second_modal
+                                                  ? _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "modal-header"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "btn btn-light",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.regresarForm()
+                                                              }
+                                                            }
+                                                          },
+                                                          [_vm._v("Regresar")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _vm._m(1)
+                                                      ]
+                                                    )
+                                                  : _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "modal-header"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "h5",
+                                                          {
+                                                            staticClass:
+                                                              "modal-title",
+                                                            attrs: {
+                                                              id:
+                                                                "exampleModalLongTitle"
+                                                            }
+                                                          },
+                                                          [_vm._v("Sus datos")]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _vm._m(2)
+                                                      ]
+                                                    ),
                                                 _vm._v(" "),
                                                 _c(
                                                   "div",
                                                   { staticClass: "modal-body" },
                                                   [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-group"
-                                                      },
-                                                      [
-                                                        _c("label", [
-                                                          _vm._v("Su nombre")
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("input", {
-                                                          directives: [
+                                                    _vm.is_second_modal
+                                                      ? _c("div", [
+                                                          _vm._m(3),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "p",
                                                             {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value:
-                                                                _vm.model
-                                                                  .nombre,
-                                                              expression:
-                                                                "model.nombre"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control",
-                                                          attrs: {
-                                                            type: "text"
-                                                          },
-                                                          domProps: {
-                                                            value:
-                                                              _vm.model.nombre
-                                                          },
-                                                          on: {
-                                                            input: function(
-                                                              $event
-                                                            ) {
-                                                              if (
-                                                                $event.target
-                                                                  .composing
-                                                              ) {
-                                                                return
-                                                              }
-                                                              _vm.$set(
-                                                                _vm.model,
-                                                                "nombre",
-                                                                $event.target
-                                                                  .value
+                                                              staticClass:
+                                                                "font-weight-bold mb-3"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                                            Resumen del pedido\n                                                        "
                                                               )
-                                                            }
-                                                          }
-                                                        })
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-group"
-                                                      },
-                                                      [
-                                                        _c("label", [
-                                                          _vm._v("Teléfono")
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("input", {
-                                                          directives: [
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "table",
                                                             {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value:
-                                                                _vm.model
-                                                                  .telefono,
-                                                              expression:
-                                                                "model.telefono"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control",
-                                                          attrs: {
-                                                            type: "text"
-                                                          },
-                                                          domProps: {
-                                                            value:
-                                                              _vm.model.telefono
-                                                          },
-                                                          on: {
-                                                            input: function(
-                                                              $event
-                                                            ) {
-                                                              if (
-                                                                $event.target
-                                                                  .composing
-                                                              ) {
-                                                                return
-                                                              }
-                                                              _vm.$set(
-                                                                _vm.model,
-                                                                "telefono",
-                                                                $event.target
-                                                                  .value
+                                                              staticClass:
+                                                                "table table-hover"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "tbody",
+                                                                [
+                                                                  _vm._l(
+                                                                    _vm.carrito,
+                                                                    function(
+                                                                      item,
+                                                                      index
+                                                                    ) {
+                                                                      return _c(
+                                                                        "tr",
+                                                                        [
+                                                                          _c(
+                                                                            "td",
+                                                                            [
+                                                                              _vm._v(
+                                                                                _vm._s(
+                                                                                  item.xprod
+                                                                                ) +
+                                                                                  " x " +
+                                                                                  _vm._s(
+                                                                                    item.xcantidad
+                                                                                  )
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "td",
+                                                                            {
+                                                                              staticClass:
+                                                                                "text-right"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "select",
+                                                                                {
+                                                                                  directives: [
+                                                                                    {
+                                                                                      name:
+                                                                                        "model",
+                                                                                      rawName:
+                                                                                        "v-model",
+                                                                                      value:
+                                                                                        item.xprecioNew,
+                                                                                      expression:
+                                                                                        "item.xprecioNew"
+                                                                                    }
+                                                                                  ],
+                                                                                  staticClass:
+                                                                                    "form-control",
+                                                                                  on: {
+                                                                                    change: [
+                                                                                      function(
+                                                                                        $event
+                                                                                      ) {
+                                                                                        var $$selectedVal = Array.prototype.filter
+                                                                                          .call(
+                                                                                            $event
+                                                                                              .target
+                                                                                              .options,
+                                                                                            function(
+                                                                                              o
+                                                                                            ) {
+                                                                                              return o.selected
+                                                                                            }
+                                                                                          )
+                                                                                          .map(
+                                                                                            function(
+                                                                                              o
+                                                                                            ) {
+                                                                                              var val =
+                                                                                                "_value" in
+                                                                                                o
+                                                                                                  ? o._value
+                                                                                                  : o.value
+                                                                                              return val
+                                                                                            }
+                                                                                          )
+                                                                                        _vm.$set(
+                                                                                          item,
+                                                                                          "xprecioNew",
+                                                                                          $event
+                                                                                            .target
+                                                                                            .multiple
+                                                                                            ? $$selectedVal
+                                                                                            : $$selectedVal[0]
+                                                                                        )
+                                                                                      },
+                                                                                      function(
+                                                                                        $event
+                                                                                      ) {
+                                                                                        return _vm.calcularTotal()
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                },
+                                                                                _vm._l(
+                                                                                  item.xprecio.split(
+                                                                                    "-"
+                                                                                  ),
+                                                                                  function(
+                                                                                    costo
+                                                                                  ) {
+                                                                                    return _c(
+                                                                                      "option",
+                                                                                      {
+                                                                                        attrs: {
+                                                                                          selected:
+                                                                                            ""
+                                                                                        },
+                                                                                        domProps: {
+                                                                                          value: costo
+                                                                                        }
+                                                                                      },
+                                                                                      [
+                                                                                        _vm._v(
+                                                                                          _vm._s(
+                                                                                            costo
+                                                                                          )
+                                                                                        )
+                                                                                      ]
+                                                                                    )
+                                                                                  }
+                                                                                ),
+                                                                                0
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    }
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c("tr", [
+                                                                    _vm._m(4),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "td",
+                                                                      {
+                                                                        staticClass:
+                                                                          "text-right"
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "S/. " +
+                                                                            _vm._s(
+                                                                              _vm.total
+                                                                            )
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ])
+                                                                ],
+                                                                2
                                                               )
-                                                            }
-                                                          }
-                                                        })
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-group"
-                                                      },
-                                                      [
-                                                        _c("label", [
-                                                          _vm._v("Dirección")
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("input", {
-                                                          directives: [
+                                                            ]
+                                                          )
+                                                        ])
+                                                      : _c("div", [
+                                                          _c(
+                                                            "div",
                                                             {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value:
-                                                                _vm.model
-                                                                  .direccion,
-                                                              expression:
-                                                                "model.direccion"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control",
-                                                          attrs: {
-                                                            type: "text"
-                                                          },
-                                                          domProps: {
-                                                            value:
-                                                              _vm.model
-                                                                .direccion
-                                                          },
-                                                          on: {
-                                                            input: function(
-                                                              $event
-                                                            ) {
-                                                              if (
-                                                                $event.target
-                                                                  .composing
-                                                              ) {
-                                                                return
-                                                              }
-                                                              _vm.$set(
-                                                                _vm.model,
-                                                                "direccion",
-                                                                $event.target
-                                                                  .value
-                                                              )
-                                                            }
-                                                          }
-                                                        })
-                                                      ]
-                                                    )
+                                                              staticClass:
+                                                                "form-group"
+                                                            },
+                                                            [
+                                                              _c("label", [
+                                                                _vm._v(
+                                                                  "Su nombre"
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("input", {
+                                                                directives: [
+                                                                  {
+                                                                    name:
+                                                                      "model",
+                                                                    rawName:
+                                                                      "v-model",
+                                                                    value:
+                                                                      _vm.model
+                                                                        .nombre,
+                                                                    expression:
+                                                                      "model.nombre"
+                                                                  }
+                                                                ],
+                                                                staticClass:
+                                                                  "form-control",
+                                                                attrs: {
+                                                                  type: "text"
+                                                                },
+                                                                domProps: {
+                                                                  value:
+                                                                    _vm.model
+                                                                      .nombre
+                                                                },
+                                                                on: {
+                                                                  input: function(
+                                                                    $event
+                                                                  ) {
+                                                                    if (
+                                                                      $event
+                                                                        .target
+                                                                        .composing
+                                                                    ) {
+                                                                      return
+                                                                    }
+                                                                    _vm.$set(
+                                                                      _vm.model,
+                                                                      "nombre",
+                                                                      $event
+                                                                        .target
+                                                                        .value
+                                                                    )
+                                                                  }
+                                                                }
+                                                              })
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "form-group"
+                                                            },
+                                                            [
+                                                              _c("label", [
+                                                                _vm._v(
+                                                                  "Teléfono"
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("input", {
+                                                                directives: [
+                                                                  {
+                                                                    name:
+                                                                      "model",
+                                                                    rawName:
+                                                                      "v-model",
+                                                                    value:
+                                                                      _vm.model
+                                                                        .telefono,
+                                                                    expression:
+                                                                      "model.telefono"
+                                                                  }
+                                                                ],
+                                                                staticClass:
+                                                                  "form-control",
+                                                                attrs: {
+                                                                  type: "text"
+                                                                },
+                                                                domProps: {
+                                                                  value:
+                                                                    _vm.model
+                                                                      .telefono
+                                                                },
+                                                                on: {
+                                                                  input: function(
+                                                                    $event
+                                                                  ) {
+                                                                    if (
+                                                                      $event
+                                                                        .target
+                                                                        .composing
+                                                                    ) {
+                                                                      return
+                                                                    }
+                                                                    _vm.$set(
+                                                                      _vm.model,
+                                                                      "telefono",
+                                                                      $event
+                                                                        .target
+                                                                        .value
+                                                                    )
+                                                                  }
+                                                                }
+                                                              })
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "form-group"
+                                                            },
+                                                            [
+                                                              _c("label", [
+                                                                _vm._v(
+                                                                  "Dirección"
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("input", {
+                                                                directives: [
+                                                                  {
+                                                                    name:
+                                                                      "model",
+                                                                    rawName:
+                                                                      "v-model",
+                                                                    value:
+                                                                      _vm.model
+                                                                        .direccion,
+                                                                    expression:
+                                                                      "model.direccion"
+                                                                  }
+                                                                ],
+                                                                staticClass:
+                                                                  "form-control",
+                                                                attrs: {
+                                                                  type: "text"
+                                                                },
+                                                                domProps: {
+                                                                  value:
+                                                                    _vm.model
+                                                                      .direccion
+                                                                },
+                                                                on: {
+                                                                  input: function(
+                                                                    $event
+                                                                  ) {
+                                                                    if (
+                                                                      $event
+                                                                        .target
+                                                                        .composing
+                                                                    ) {
+                                                                      return
+                                                                    }
+                                                                    _vm.$set(
+                                                                      _vm.model,
+                                                                      "direccion",
+                                                                      $event
+                                                                        .target
+                                                                        .value
+                                                                    )
+                                                                  }
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                        ])
                                                   ]
                                                 ),
                                                 _vm._v(" "),
@@ -38823,40 +39143,61 @@ var render = function() {
                                                     staticClass: "modal-footer"
                                                   },
                                                   [
-                                                    _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "btn btn-secondary",
-                                                        attrs: {
-                                                          type: "button",
-                                                          "data-dismiss":
-                                                            "modal"
-                                                        }
-                                                      },
-                                                      [_vm._v("Close")]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "btn btn-primary",
-                                                        attrs: {
-                                                          type: "button",
-                                                          "data-dismiss":
-                                                            "modal"
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.enviarDelivery()
-                                                          }
-                                                        }
-                                                      },
-                                                      [_vm._v("Delivery")]
-                                                    )
+                                                    _vm.is_second_modal
+                                                      ? _c("div", [
+                                                          _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-primary btn-block",
+                                                              attrs: {
+                                                                type: "button"
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.confirmDelivery()
+                                                                }
+                                                              }
+                                                            },
+                                                            [_vm._m(5)]
+                                                          )
+                                                        ])
+                                                      : _c("div", [
+                                                          _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-secondary",
+                                                              attrs: {
+                                                                type: "button",
+                                                                "data-dismiss":
+                                                                  "modal"
+                                                              }
+                                                            },
+                                                            [_vm._v("Close")]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-primary",
+                                                              attrs: {
+                                                                type: "button"
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.enviarDelivery()
+                                                                }
+                                                              }
+                                                            },
+                                                            [_vm._v("Validar")]
+                                                          )
+                                                        ])
                                                   ]
                                                 )
                                               ]
@@ -39142,7 +39483,7 @@ var render = function() {
       _c("aside", { staticClass: "col-md-3" }, [
         _c("div", { staticClass: "card" }, [
           _c("article", { staticClass: "filter-group" }, [
-            _vm._m(2),
+            _vm._m(6),
             _vm._v(" "),
             _c(
               "div",
@@ -39154,7 +39495,7 @@ var render = function() {
                 _c("div", { staticClass: "card-body" }, [
                   _vm.restdelivery != ""
                     ? _c("figure", { staticClass: "itemside" }, [
-                        _vm._m(3),
+                        _vm._m(7),
                         _vm._v(" "),
                         _c("figcaption", { staticClass: "info" }, [
                           _c("h6", { staticClass: "title" }, [
@@ -39201,24 +39542,72 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
-        [_vm._v("Sus datos")]
-      ),
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "alert alert-success text-center",
+        attrs: { role: "alert" }
+      },
+      [
+        _c("b", [_vm._v("Solo falta 1 click, ")]),
+        _vm._v(
+          " tu solicitud nos llegará por whatsapp\n                                                        "
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("b", [_vm._v("Costo Total ")]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      _c("p", [_vm._v("(Impuestos incluidos)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "v-btn__content" }, [
+      _c("i", { staticClass: "fab fa-whatsapp" }),
+      _vm._v(
+        "\n                                                                Click aquí para enviar tu pedido\n                                                            "
       )
     ])
   },

@@ -49,29 +49,73 @@
                                             <div v-if="is_modal_visible" id="modal" class="modal fade">
                                                  <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-                                                    <div class="modal-header">
+                                                    <div class="modal-header" v-if="is_second_modal">
+                                                        <button @click="regresarForm()" class="btn btn-light">Regresar</button>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-header" v-else>
                                                         <h5 class="modal-title" id="exampleModalLongTitle">Sus datos</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
+                                                            <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="form-group">
+                                                        <div v-if="is_second_modal">
+                                                            <div class="alert alert-success text-center" role="alert">
+                                                                <b>Solo falta 1 click, </b> tu solicitud nos llegará por whatsapp
+                                                            </div>
+                                                            <p class="font-weight-bold mb-3">
+                                                                Resumen del pedido
+                                                            </p>
+                                                            <table class="table table-hover">
+                                                                <tbody>
+                                                                    <tr v-for="(item, index) in carrito">
+                                                                        <td>{{item.xprod}} x {{item.xcantidad}}</td>
+                                                                        <td class="text-right">
+                                                                            <select v-model="item.xprecioNew" @change="calcularTotal()" class="form-control">
+                                                                                <option  v-for="(costo) in item.xprecio.split('-')" :value="costo" selected>{{ costo }}</option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <b>Costo Total </b>
+                                                                            <p>(Impuestos incluidos)</p>
+                                                                            </td>
+                                                                        <td class="text-right">S/. {{ total }}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div v-else>                                                  <div class="form-group">
                                                             <label >Su nombre</label>
-                                                            <input type="text" v-model="model.nombre" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label >Teléfono</label>
-                                                            <input type="text" v-model="model.telefono" class="form-control">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label >Dirección</label>
-                                                            <input type="text" v-model="model.direccion" class="form-control">
+                                                                <input type="text" v-model="model.nombre" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label >Teléfono</label>
+                                                                <input type="text" v-model="model.telefono" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label >Dirección</label>
+                                                                <input type="text" v-model="model.direccion" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="enviarDelivery()">Delivery</button>
+                                                        <div v-if="is_second_modal">
+                                                            <button type="button" class="btn btn-primary btn-block" @click="confirmDelivery()">
+                                                                <span class="v-btn__content">
+                                                                    <i class="fab fa-whatsapp"></i>
+                                                                    Click aquí para enviar tu pedido
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div v-else>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" @click="enviarDelivery()">Validar</button>
+                                                        </div>
                                                     </div>
                                                     </div>
                                                 </div>
@@ -235,6 +279,8 @@
                 listwsp:[],
                 textBusc: "",
                 is_modal_visible: false,
+                is_second_modal: false,
+                total: 0.00,
                 model: {
                     nombre: '',
                     telefono: '',
@@ -282,17 +328,37 @@
                 }
             },
             enviarDelivery() {
+                this.calcularTotal()
+                this.is_second_modal = true;
+            },
+            confirmDelivery() {
+                var aux = 0
+                this.carrito.forEach(element => {
+                    if(element.xprecioNew == null){
+                        toastr.error("Ingrese precios: " + element.xprod)
+                        aux = 1
+                        return
+                    }
+                })
 
-                var data = []
+                if(aux) return
 
-                this.listwsp.forEach(element => {
-                    data.push({
-                        "name": element.split("*")[1],
-                        "cantidad": element.split("*")[3]
-                    })
-                });
-                console.log(data)
-                console.log(this.model)
+                console.log(this.carrito);
+                toastr.success("Pedido Enviado con éxito")
+                this.is_modal_visible = false;
+                $('#modal').modal('hide');
+
+            },
+            calcularTotal() {
+                this.total = 0.00
+                this.carrito.forEach(element => {
+                    if(element.xprecioNew != null){
+                        this.total += parseFloat(element.xprecioNew)
+                    }
+                })
+            },
+            regresarForm() {
+                this.is_second_modal = false;
             },
             // persist() {
             //     localStorage.name = this.name;
