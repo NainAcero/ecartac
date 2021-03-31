@@ -2345,7 +2345,7 @@ __webpack_require__.r(__webpack_exports__);
       this.total = 0.00;
       this.carrito.forEach(function (element) {
         if (element.xprecioNew != null) {
-          _this4.total += parseFloat(element.xprecioNew);
+          _this4.total += parseFloat(element.xprecioNew) * parseInt(element.xcantidad);
         }
       });
     },

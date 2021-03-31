@@ -353,7 +353,7 @@
                 this.total = 0.00
                 this.carrito.forEach(element => {
                     if(element.xprecioNew != null){
-                        this.total += parseFloat(element.xprecioNew)
+                        this.total += parseFloat(element.xprecioNew) * parseInt(element.xcantidad)
                     }
                 })
             },
