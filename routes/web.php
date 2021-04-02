@@ -36,6 +36,12 @@ Route::get('getcategoria', 'EcommerceController@getCategoria_rest');
 Route::get('getbuscador', 'EcommerceController@getBuscador_rest');
 Route::get('getFilterPrice', 'EcommerceController@getFilterPrice_rest');
 
+// FERIA
+Route::get('feria', 'FeriaController@index')->name('feria');
+Route::get('feria/isometrica', 'FeriaController@isometrica')->name('isometrica');
+Route::get('feria/stand', 'FeriaController@stand')->name('stand');
+
+
 // Route::get('/productos', function () {
 //     return view('frontend.detalleproducto');
 // });

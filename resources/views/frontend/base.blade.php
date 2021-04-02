@@ -6,7 +6,7 @@
         <meta http-equiv="cache-control" content="max-age=604800" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        
+
 		<meta property="og:title" content="@yield('ogTitle', 'eCartac - Ecommerce de la Gastronomia Tacneña')"/>
 		{{-- <meta name="description" content="eCartac - Un Ecommerce de restaurantes de Tacna donde podrás visualizar sus cartas digitales."> --}}
 		<meta property="og:description" content="@yield('ogDesc', 'eCartac - Un Ecommerce de restaurantes de Tacna donde podrás visualizar sus cartas digitales.')"/>
@@ -15,9 +15,9 @@
 		{{-- <meta property="og:image:height" content="400" /> --}}
 
         <meta name="keywords" content="ecommerce tacna, restaurantes tacna, comida tacna, plato criollo tacna, delivery tacna, platos a la carta tacna, mercado de comidas tacna, qr carta, qr restaurantes tacna">
-		
+
 		{{-- <title>eCartac - Ecommerce de la Gastronomia Tacneña</title> --}}
-		
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
@@ -30,10 +30,10 @@
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-		
+
 			gtag('config', 'G-053M0WK7S9');
 		</script>
-			
+
 		{{-- <script type="text/javascript">
 			WebFontConfig = {
 				google: { families: [ 'Open+Sans:300,400,600,700,800','Poppins:300,400,500,600,700','Segoe Script:300,400,500,600,700' ] }
@@ -61,12 +61,42 @@
 
 		<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
 		<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
-		
+
 
         <!-- custom javascript -->
 		<script src="{{asset('ecom/js/script.js')}}" type="text/javascript"></script>
-		
 
+        <style type="text/css">
+
+            .no-img-cellphone {
+                display: block;
+            }
+
+            .img-responsi-feria {
+                margin-left: 94%;
+            }
+
+            .ocultar_name {
+                display: block;
+            }
+
+            @media (max-width: 720px) {
+
+                .ocultar_name {
+                    display: none;
+                }
+
+                .no-img-cellphone {
+                    display: none;
+                }
+
+                .img-responsi-feria {
+                    margin-left: 80%;
+                }
+            }
+            </style>
+
+        @yield('styles')
     </head>
 	<body>
 
@@ -103,7 +133,7 @@
 		<article class="my-4">
 			{{-- <img src="{{asset('ecom/images/banners/ad-sm.png')}}" class="w-100"> --}}
 		</article>
-		</div>  
+		</div>
 		<!-- container end.// -->
 
 		<!-- ========================= SECTION SUBSCRIBE  ========================= -->
@@ -138,11 +168,11 @@
 								{{-- <h5 class="title">Sobre nosotros</h5> --}}
 								<p>eCartac, una plataforma web que muestra la Carta/Menú de los Restaurantes y/o al escanear el código QR desde su celular.</p>
 								{{-- <p>tus clientes podrán escanear el código QR desde su celular y acceder al menú online de tu local.</p> --}}
-								
+
 								<ul class="list-icon">
 									<li> <i class="icon fa fa-map-marker"> </i>Tacna </li>
 									<li> <i class="icon fa fa-envelope"> </i> wgcalisaya@gmail.com</li>
-									<li> 
+									<li>
 										{{-- <i class="icon fa fa-whatsapp"> </i>  --}}
 										<i class="fab fa-whatsapp-square" style="color:#50c55c;"></i>
 										<a href="https://wa.me/51952633245?text=Más información para publicar mi menu/carta ..." target="../" class="widget-view">952633245</a>
@@ -180,18 +210,18 @@
 								{{-- <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fecartac&tabs&width=340&height=130&small_header=false&adapt_container_width=false&hide_cover=true&show_facepile=false&appId=369870783750134" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> --}}
 								<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fecartac&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=369870783750134" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 							</div>
-		
+
 						</aside>
 					</div> <!-- row.// -->
 				</section>	<!-- footer-top.// -->
-		
+
 				<section class="footer-bottom text-center">
 					<p class="text-muted"> &copy 2021 NodeLab, All rights reserved </p>
 			</section>
 			</div><!-- //container -->
 		</footer>
 			<!-- ========================= FOOTER END // ========================= -->
-			
+
 
 
 
