@@ -1,7 +1,13 @@
 <template>
     <div>
         <div class="row">
-            <main class="col-md-9">
+
+            <a href="#" class="btn-flotante" v-if="listwsp.length > 0" style="width:95%">
+                <p class="d-inline p-2 bg-dark text-white" >{{ listwsp.length }}</p>
+                <h4 class="d-inline p-2">Ver Canasta</h4>
+            </a>
+
+            <main class="col-md-12">
                 <div class="card" v-if="listwsp.length > 0">
                     <div class="table-responsive">
                         <table class="table table-sm">
@@ -192,8 +198,10 @@
                             <td>
                                 <h6 class="title mb-0"><a :href="'../productos/'+ item.slug"> {{item.producto}}  </a>  <span v-if="item.oferta" class="text-warning mr-2" data-toggle="tooltip" title="Oferta/Promoción"><i class="fas fa-tag"></i></span></h6>
                                 <small class="text-muted"><p>{{item.ingredientes}}</p></small>
-                                <button class="btn btn-outline-info btn-sm float-right" @click="addProducto(item)">Añadir <i class="fa fa-shopping-cart"></i></button>
-                                <a class="btn btn-outline-success btn-sm float-right mr-2" :href="'https://wa.me/51'+ restcelular + '?text=Hola, deseo realizar este pedido. %0D%0A * '+ item.producto + '* %0D%0A *Precio:* S/' + item.precio+ '%0D%0A%0D%0A Gracias'" target="../" >Delivery <i class="fab fa-whatsapp"></i></a>
+
+                                <button class="btn btn-warning btn-sm float-right" @click="addProducto(item)"> <i class="fas fa-plus"></i></button>
+
+                                <!-- <a class="btn btn-outline-success btn-sm float-right mr-2" :href="'https://wa.me/51'+ restcelular + '?text=Hola, deseo realizar este pedido. %0D%0A * '+ item.producto + '* %0D%0A *Precio:* S/' + item.precio+ '%0D%0A%0D%0A Gracias'" target="../" >Delivery <i class="fab fa-whatsapp"></i></a> -->
                                 <var class="price text-muted float-right  mr-2">S/ {{item.precio}}</var>
                             </td>
                         </tr>
@@ -202,7 +210,7 @@
                 </article>
                 <br>
             </main> <!-- col.// -->
-            <aside class="col-md-3">
+            <!-- <aside class="col-md-3">
                 <div class="card">
                     <article class="filter-group">
                         <header class="card-header">
@@ -212,7 +220,9 @@
                             </a>
                         </header>
                         <div class="filter-content collapse show" id="collapse_1" style="">
-                            <div class="card-body">
+                            <div class="card-body"> -->
+
+
                                 <!-- <form class="pb-3">
                                     <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search">
@@ -227,7 +237,9 @@
                                     <li><a href="#">Delivery </a>
                                     </li>
                                 </ul> -->
-                                <figure class="itemside" v-if="restdelivery !=''" >
+
+
+                                <!-- <figure class="itemside" v-if="restdelivery !=''" >
                                     <div class="aside">
                                         <span class="icon-sm rounded-circle bg-success">
                                             <i class="fa fa-truck white"></i>
@@ -240,8 +252,11 @@
                                 </figure>
                             </div>
                         </div>
-                    </article> <!-- filter-group  .// -->
-                </div> <!-- card.// -->
+                    </article>
+                </div> -->
+
+
+
                 <!-- <article class="card card-body">
                     <figure class="itemside" v-if="restdelivery !=''" >
                         <div class="aside">
@@ -255,12 +270,19 @@
                         </figcaption>
                     </figure>
                 </article> -->
-            </aside> <!-- col.// -->
+
+
+            <!-- </aside>  -->
+
+
+            <!-- col.// -->
         </div>
     </div>
 </template>
 
+
 <script>
+
     import toastr from 'toastr';
     export default {
         props : ['idrest','celular','portada','delivery'],

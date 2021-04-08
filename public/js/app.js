@@ -2252,6 +2252,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['idrest', 'celular', 'portada', 'delivery'],
@@ -38578,9 +38599,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row" }, [
+      _vm.listwsp.length > 0
+        ? _c(
+            "a",
+            {
+              staticClass: "btn-flotante",
+              staticStyle: { width: "95%" },
+              attrs: { href: "#" }
+            },
+            [
+              _c("p", { staticClass: "d-inline p-2 bg-dark text-white" }, [
+                _vm._v(_vm._s(_vm.listwsp.length))
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "d-inline p-2" }, [_vm._v("Ver Canasta")])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "main",
-        { staticClass: "col-md-9" },
+        { staticClass: "col-md-12" },
         [
           _vm.listwsp.length > 0
             ? _c("div", { staticClass: "card" }, [
@@ -39423,42 +39462,14 @@ var render = function() {
                                 "button",
                                 {
                                   staticClass:
-                                    "btn btn-outline-info btn-sm float-right",
+                                    "btn btn-warning btn-sm float-right",
                                   on: {
                                     click: function($event) {
                                       return _vm.addProducto(item)
                                     }
                                   }
                                 },
-                                [
-                                  _vm._v("Añadir "),
-                                  _c("i", {
-                                    staticClass: "fa fa-shopping-cart"
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "btn btn-outline-success btn-sm float-right mr-2",
-                                  attrs: {
-                                    href:
-                                      "https://wa.me/51" +
-                                      _vm.restcelular +
-                                      "?text=Hola, deseo realizar este pedido. %0D%0A * " +
-                                      item.producto +
-                                      "* %0D%0A *Precio:* S/" +
-                                      item.precio +
-                                      "%0D%0A%0D%0A Gracias",
-                                    target: "../"
-                                  }
-                                },
-                                [
-                                  _vm._v("Delivery "),
-                                  _c("i", { staticClass: "fab fa-whatsapp" })
-                                ]
+                                [_c("i", { staticClass: "fas fa-plus" })]
                               ),
                               _vm._v(" "),
                               _c(
@@ -39483,42 +39494,7 @@ var render = function() {
           _c("br")
         ],
         2
-      ),
-      _vm._v(" "),
-      _c("aside", { staticClass: "col-md-3" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("article", { staticClass: "filter-group" }, [
-            _vm._m(5),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "filter-content collapse show",
-                attrs: { id: "collapse_1" }
-              },
-              [
-                _c("div", { staticClass: "card-body" }, [
-                  _vm.restdelivery != ""
-                    ? _c("figure", { staticClass: "itemside" }, [
-                        _vm._m(6),
-                        _vm._v(" "),
-                        _c("figcaption", { staticClass: "info" }, [
-                          _c("h6", { staticClass: "title" }, [
-                            _vm._v("Delivery")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-muted" }, [
-                            _vm._v(_vm._s(_vm.restdelivery))
-                          ])
-                        ])
-                      ])
-                    : _vm._e()
-                ])
-              ]
-            )
-          ])
-        ])
-      ])
+      )
     ])
   ])
 }
@@ -39604,39 +39580,6 @@ var staticRenderFns = [
       _vm._v(
         "\n                                                                Click aquí para enviar tu pedido\n                                                            "
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "card-header" }, [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "#",
-            "data-toggle": "collapse",
-            "data-target": "#collapse_1",
-            "aria-expanded": "true"
-          }
-        },
-        [
-          _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-          _vm._v(" "),
-          _c("h6", { staticClass: "title" }, [_vm._v("Novedades")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "aside" }, [
-      _c("span", { staticClass: "icon-sm rounded-circle bg-success" }, [
-        _c("i", { staticClass: "fa fa-truck white" })
-      ])
     ])
   }
 ]
