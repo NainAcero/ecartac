@@ -21,7 +21,7 @@
 
                                 @foreach ([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] as $item)
                                     <a href="{{ url('feria/stand') }}" target="_self" class="standIsometrico">
-                                        <img src="{{ asset('img/feria/stand-isometrico.png') }}" alt="" >
+                                        <img src="{{ asset('img/feria/stand_rest.png') }}" alt="" width="350">
                                         <div class="logo">
                                             <img src="{{ asset('img/prueba.jpg') }}"
                                                 style="width: 160px !important; margin: 1px 1px;" alt="Ok Computer">

@@ -72,20 +72,21 @@
                                                             <table class="table table-hover">
                                                                 <tbody>
                                                                     <tr v-for="(item, index) in carrito">
-                                                                        <td>{{item.xprod}} x {{item.xcantidad}}</td>
+                                                                        <td>{{item.xprod}}</td>
                                                                         <td class="text-right">
-                                                                            <select v-model="item.xprecioNew" @change="calcularTotal()" class="form-control">
-                                                                                <option  v-for="(costo) in item.xprecio.split('-')" :value="costo" selected>{{ costo }}</option>
-                                                                            </select>
+                                                                            <input type="number" v-model="item.xcantidad" @change="cantidadPedidos()" class="form-control" style="width: 120px;">
+                                                                        </td>
+                                                                        <td>
+                                                                            <button class="btn btn-outline-danger btn-sm float-right" @click="removeCart(index)"><i class="fa fa-trash-alt"></i></button>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
+                                                                    <!-- <tr>
                                                                         <td>
                                                                             <b>Costo Total </b>
                                                                             <p>(Impuestos incluidos)</p>
                                                                             </td>
                                                                         <td class="text-right">S/. {{ total }}</td>
-                                                                    </tr>
+                                                                    </tr> -->
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -328,23 +329,55 @@
                 }
             },
             enviarDelivery() {
-                this.calcularTotal()
+                if(this.model.nombre.trim() == "" || this.model.nombre == null) {
+                    toastr.warning("Ingrese su nombre...");
+                    return;
+                }
+
+                if(this.model.telefono.trim() == "" || this.model.telefono == null) {
+                    toastr.warning("Ingrese su telefono...");
+                    return;
+                }
+
+                if(this.model.direccion.trim() == "" || this.model.direccion == null) {
+                    toastr.warning("Ingrese su dirección...");
+                    return;
+                }
+
+                // this.calcularTotal()
                 this.is_second_modal = true;
             },
             confirmDelivery() {
-                var aux = 0
-                this.carrito.forEach(element => {
-                    if(element.xprecioNew == null){
-                        toastr.error("Ingrese precios: " + element.xprod)
-                        aux = 1
-                        return
+                // var aux = 0
+                // this.carrito.forEach(element => {
+                //     if(element.xprecioNew == null){
+                //         toastr.error("Ingrese precios: " + element.xprod)
+                //         aux = 1
+                //         return
+                //     }
+                // })
+
+                // if(aux) return
+
+                // Enviar Base de datos
+                axios.post('/pedido', {
+                    nombre: this.model.nombre,
+                    telefono: this.model.telefono,
+                    direccion: this.model.direccion,
+                    tienda_id: 28,
+                    productos: this.carrito
+                }).then(res=>{
+                    if(res.status == 201) {
+                        toastr.success("Pedido Enviado con éxito")
+                        this.carrito = []
+                        this.saveCarts();
+                        window.location.replace('https://wa.me/51'+ this.restcelular + '?text=Hola, deseo realizar este pedido. '+ this.listwsp +'%0D%0A%0D%0A Gracias');
+
+                    }else{
+                        toastr.error("Ocurrio un error!..")
                     }
                 })
 
-                if(aux) return
-
-                console.log(this.carrito);
-                toastr.success("Pedido Enviado con éxito")
                 this.is_modal_visible = false;
                 $('#modal').modal('hide');
 
@@ -399,7 +432,7 @@
                     }
                 });
                 this.saveCarts();
-                this.calcularTotal();
+                // this.calcularTotal();
             }
 
         },

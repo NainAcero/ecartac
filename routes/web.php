@@ -36,6 +36,9 @@ Route::get('getcategoria', 'EcommerceController@getCategoria_rest');
 Route::get('getbuscador', 'EcommerceController@getBuscador_rest');
 Route::get('getFilterPrice', 'EcommerceController@getFilterPrice_rest');
 
+// PEDIDO
+Route::post('pedido', 'PedidoController@enviar');
+
 // FERIA
 Route::get('feria', 'FeriaController@index')->name('feria');
 Route::get('feria/isometrica', 'FeriaController@isometrica')->name('isometrica');

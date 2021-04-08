@@ -18,6 +18,8 @@ class CategoriaController extends Controller
     {
         if (Auth::user()->hasRole('Admin')) {
             $categorias = Categoria::get();
+
+            $cateorder = Categoria::get();
         }else{
             $tienda = Auth::user()->mitienda;
             $categorias = Categoria::where('tienda_id', $tienda->id)->get();
@@ -55,7 +57,7 @@ class CategoriaController extends Controller
                 'categoria' => 'required|string|unique:categorias',
             ]);
         }
-        
+
         $categoria = new Categoria();
         $categoria->tienda_id = $tienda->id;
         $categoria->categoria = Str::ucfirst(strtolower($request->categoria));
@@ -120,7 +122,7 @@ class CategoriaController extends Controller
     {
         if($request->has('ids')){
             $arr = explode(',',$request->input('ids'));
-            
+
             foreach($arr as $sortOrder => $id){
                 $categoria = Categoria::find($id);
                 $categoria->sort_id = $sortOrder;
