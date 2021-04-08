@@ -38941,7 +38941,7 @@ var render = function() {
                                           }
                                         ],
                                         staticClass: "form-control",
-                                        attrs: { type: "number" },
+                                        attrs: { type: "number", min: "0" },
                                         domProps: { value: item.xcantidad },
                                         on: {
                                           change: function($event) {

@@ -107,7 +107,7 @@
                                             <var class="text-muted">{{item.xprecio}}</var>
                                         </td>
                                         <td>
-                                            <input type="number" v-model="item.xcantidad" @change="cantidadPedidos()" class="form-control">
+                                            <input type="number" v-model="item.xcantidad" @change="cantidadPedidos()" min="0" class="form-control">
                                         </td>
                                         <td>
                                             <button class="btn btn-outline-danger btn-sm float-right" @click="removeCart(index)"><i class="fa fa-trash-alt"></i></button>
