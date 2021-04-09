@@ -50,7 +50,7 @@
         <article class="card card-product-grid card-lg h-100">
           {{-- <img src="{{asset($item->portada)}}" class="card-img-top"> --}}
           <div class="img-container position-relative">
-            <img src="{{asset('img/1612927731-rey-chicken.jpg')}}" class="card-img-top">
+            <img src="{{asset('img/elpadrino-logo.png')}}" class="card-img-top">
           </div>
 
           <div class="card-body text-center">
