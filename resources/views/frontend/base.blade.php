@@ -1,116 +1,121 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="pragma" content="no-cache" />
-        <meta http-equiv="cache-control" content="max-age=604800" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="cache-control" content="max-age=604800" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-		<meta property="og:title" content="@yield('ogTitle', 'eCartac - Ecommerce de la Gastronomia Tacneña')"/>
-		{{-- <meta name="description" content="eCartac - Un Ecommerce de restaurantes de Tacna donde podrás visualizar sus cartas digitales."> --}}
-		<meta property="og:description" content="@yield('ogDesc', 'eCartac - Un Ecommerce de restaurantes de Tacna donde podrás visualizar sus cartas digitales.')"/>
-		<meta property="og:image" content="@yield('ogImage', 'https://ecartac.com/img/logo4.png')"/>
-		<meta property="og:image:width" content="200" />
-		{{-- <meta property="og:image:height" content="400" /> --}}
+  <meta property="og:title" content="@yield('ogTitle', 'eCartac - Ecommerce de la Gastronomia Tacneña')" />
+  {{-- <meta name="description" content="eCartac - Un Ecommerce de restaurantes de Tacna donde podrás visualizar sus cartas digitales."> --}}
+  <meta property="og:description"
+    content="@yield('ogDesc', 'eCartac - Un Ecommerce de restaurantes de Tacna donde podrás visualizar sus cartas digitales.')" />
+  <meta property="og:image" content="@yield('ogImage', 'https://ecartac.com/img/logo4.png')" />
+  <meta property="og:image:width" content="200" />
+  {{-- <meta property="og:image:height" content="400" /> --}}
 
-        <meta name="keywords" content="ecommerce tacna, restaurantes tacna, comida tacna, plato criollo tacna, delivery tacna, platos a la carta tacna, mercado de comidas tacna, qr carta, qr restaurantes tacna">
+  <meta name="keywords"
+    content="ecommerce tacna, restaurantes tacna, comida tacna, plato criollo tacna, delivery tacna, platos a la carta tacna, mercado de comidas tacna, qr carta, qr restaurantes tacna">
 
-		{{-- <title>eCartac - Ecommerce de la Gastronomia Tacneña</title> --}}
+  {{-- <title>eCartac - Ecommerce de la Gastronomia Tacneña</title> --}}
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-        <link href="{{asset('ecom/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+  <link href="{{asset('ecom/images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
 
-		<!-- jQuery -->
-		<script src="{{asset('ecom/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-053M0WK7S9"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
+  <!-- jQuery -->
+  <script src="{{asset('ecom/js/jquery-2.0.0.min.js')}}" type="text/javascript"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-053M0WK7S9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
 			gtag('config', 'G-053M0WK7S9');
-		</script>
+  </script>
 
-		{{-- <script type="text/javascript">
+  {{-- <script type="text/javascript">
 			WebFontConfig = {
 				google: { families: [ 'Open+Sans:300,400,600,700,800','Poppins:300,400,500,600,700','Segoe Script:300,400,500,600,700' ] }
 			};
 			(function(d) {
 				var wf = d.createElement('script'), s = d.scripts[0];
 				wf.src = "{{asset('assets/js/webfont.js')}}";
-				wf.async = true;
-				s.parentNode.insertBefore(wf, s);
-			})(document);
-		</script> --}}
+  wf.async = true;
+  s.parentNode.insertBefore(wf, s);
+  })(document);
+  </script> --}}
 
-        <!-- Bootstrap4 files-->
-        <script src="{{asset('ecom/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
-        <link href="{{asset('ecom/css/bootstrap.css')}}" rel="stylesheet" type="text/css"/>
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-
-        <!-- Font awesome 5 -->
-        <link href="{{asset('ecom/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
-
-        <!-- custom style -->
-        <link href="{{asset('ecom/css/ui.css')}}" rel="stylesheet" type="text/css"/>
-        <link href="{{asset('ecom/css/responsive.css')}}" rel="stylesheet" type="text/css" />
-
-		<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
-		<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
+  <!-- Bootstrap4 files-->
+  <script src="{{asset('ecom/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+  <link href="{{asset('ecom/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
-        <!-- custom javascript -->
-		<script src="{{asset('ecom/js/script.js')}}" type="text/javascript"></script>
+  <!-- Font awesome 5 -->
+  <link href="{{asset('ecom/fonts/fontawesome/css/all.min.css')}}" type="text/css" rel="stylesheet">
 
-        <style type="text/css">
+  <!-- custom style -->
+  <link href="{{asset('ecom/css/ui.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('ecom/css/responsive.css')}}" rel="stylesheet" type="text/css" />
 
-            .no-img-cellphone {
-                display: block;
-            }
-
-            .img-responsi-feria {
-                margin-left: 94%;
-            }
-
-            .ocultar_name {
-                display: block;
-            }
-
-            @media (max-width: 720px) {
-
-                .ocultar_name {
-                    display: none;
-                }
-
-                .no-img-cellphone {
-                    display: none;
-                }
-
-                .img-responsi-feria {
-                    margin-left: 80%;
-                }
-            }
-            </style>
-
-        @yield('styles')
-    </head>
-	<body>
-
-		<b class="screen-overlay"></b>
-
-		@yield('cabecera')
+  <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.carousel.css"
+    rel="stylesheet">
+  <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.theme.default.css"
+    rel="stylesheet">
 
 
-		<div class="container">
+  <!-- custom javascript -->
+  <script src="{{asset('ecom/js/script.js')}}" type="text/javascript"></script>
 
-		@yield('content')
+  <style type="text/css">
+    .no-img-cellphone {
+      display: block;
+    }
 
-		<!-- =============== SECTION REGION =============== -->
-		{{-- <section  class="padding-bottom">
+    .img-responsi-feria {
+      margin-left: 94%;
+    }
+
+    .ocultar_name {
+      display: block;
+    }
+
+    @media (max-width: 720px) {
+
+      .ocultar_name {
+        display: none;
+      }
+
+      .no-img-cellphone {
+        display: none;
+      }
+
+      .img-responsi-feria {
+        margin-left: 80%;
+      }
+    }
+  </style>
+
+  @yield('styles')
+</head>
+
+<body>
+
+  <b class="screen-overlay"></b>
+
+  @yield('cabecera')
+
+
+  <div class="container">
+
+    @yield('content')
+
+    <!-- =============== SECTION REGION =============== -->
+    {{-- <section  class="padding-bottom">
 
 		<header class="section-heading heading-line">
 			<h4 class="title-section text-uppercase">Choose region</h4>
@@ -128,16 +133,16 @@
 			<li class="col-md col-6"><a href="#" class="icontext"> <i class="mr-3 fa fa-ellipsis-h"></i> <span>More regions</span> </a></li>
 		</ul>
 		</section> --}}
-		<!-- =============== SECTION REGION .//END =============== -->
+    <!-- =============== SECTION REGION .//END =============== -->
 
-		<article class="my-4">
-			{{-- <img src="{{asset('ecom/images/banners/ad-sm.png')}}" class="w-100"> --}}
-		</article>
-		</div>
-		<!-- container end.// -->
+    <article class="my-4">
+      {{-- <img src="{{asset('ecom/images/banners/ad-sm.png')}}" class="w-100"> --}}
+    </article>
+  </div>
+  <!-- container end.// -->
 
-		<!-- ========================= SECTION SUBSCRIBE  ========================= -->
-		{{-- <section class="section-subscribe padding-y-lg">
+  <!-- ========================= SECTION SUBSCRIBE  ========================= -->
+  {{-- <section class="section-subscribe padding-y-lg">
 			<div class="container">
 				<p class="pb-2 text-center text-white">Te mostramos las últimas tendencias en platos a la carta.</p>
 				<div class="row justify-content-md-center">
@@ -155,33 +160,36 @@
 				</div>
 			</div>
 		</section> --}}
-		<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+  <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
 
 
-		<!-- ========================= FOOTER ========================= -->
-		<footer class="section-footer bg-secondary text-white">
-			<div class="container">
-				<section class="footer-top  padding-y-lg">
-					<div class="row">
-						<aside class="col-md-4 col-12">
-							<article class="mr-md-4">
-								{{-- <h5 class="title">Sobre nosotros</h5> --}}
-								<p>eCartac, una plataforma web que muestra la Carta/Menú de los Restaurantes y/o al escanear el código QR desde su celular.</p>
-								{{-- <p>tus clientes podrán escanear el código QR desde su celular y acceder al menú online de tu local.</p> --}}
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="section-footer">
+    <div class="container">
+      <section class="footer-top  padding-y-lg">
+        <div class="row">
+          <aside class="col-md-4 col-12">
+            <article class="mr-md-4">
+              {{-- <h5 class="title">Sobre nosotros</h5> --}}
+              <p>eCartac, una plataforma web que ayuda a las personas a conocer la Carta/Menú de los restaurantes de la
+                ciudad de Tacna al escanear el código QR
+                desde su celular.</p>
+              {{-- <p>tus clientes podrán escanear el código QR desde su celular y acceder al menú online de tu local.</p> --}}
 
-								<ul class="list-icon">
-									<li> <i class="icon fa fa-map-marker"> </i>Tacna </li>
-									<li> <i class="icon fa fa-envelope"> </i> wgcalisaya@gmail.com</li>
-									<li>
-										{{-- <i class="icon fa fa-whatsapp"> </i>  --}}
-										<i class="fab fa-whatsapp-square" style="color:#50c55c;"></i>
-										<a href="https://wa.me/51952633245?text=Más información para publicar mi menu/carta ..." target="../" class="widget-view">952633245</a>
-										</li>
-									{{-- <li> <i class="icon fa fa-clock"> </i>Lun-Vie 9:00am - 5:00pm</li> --}}
-								</ul>
-							</article>
-						</aside>
-						{{-- <aside class="col-md col-6">
+              <ul class="list-icon">
+                <li> <i class="icon fa fa-map-marker"> </i>Tacna </li>
+                <li> <i class="icon fa fa-envelope"> </i> wgcalisaya@gmail.com</li>
+                <li>
+                  {{-- <i class="icon fa fa-whatsapp"> </i>  --}}
+                  <i class="icon fab fa-whatsapp-square" style="color:#50c55c;"></i>
+                  <a href="https://wa.me/51952633245?text=Más información para publicar mi menu/carta ..." target="../"
+                    class="widget-view">952633245</a>
+                </li>
+                {{-- <li> <i class="icon fa fa-clock"> </i>Lun-Vie 9:00am - 5:00pm</li> --}}
+              </ul>
+            </article>
+          </aside>
+          {{-- <aside class="col-md col-6">
 							<h5 class="title">Información</h5>
 							<ul class="list-unstyled">
 								<li> <a href="#">Sobre nosotros</a></li>
@@ -200,31 +208,36 @@
 								<li> <a href="#">Disponibilidad de productos</a></li>
 							</ul>
 						</aside> --}}
-						<aside class="col-md-4 col-12">
-							<p class="text-white-50 mb-2">Síguienos en nuestra red social</p>
-							<div>
-								{{-- <a href="https://www.facebook.com/ecartac" target="../" class="btn btn-icon btn-outline-light"><i class="fab fa-facebook-f"></i></a> --}}
-								{{-- <a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-twitter"></i></a>
+          <aside class="col-md-4 col-12">
+            <p class="text-dark-50 mb-2">Síguenos en nuestra red social</p>
+            <div>
+              {{-- <a href="https://www.facebook.com/ecartac" target="../" class="btn btn-icon btn-outline-light"><i class="fab fa-facebook-f"></i></a> --}}
+              {{-- <a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-twitter"></i></a>
 								<a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-instagram"></i></a>
 								<a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-youtube"></i></a> --}}
-								{{-- <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fecartac&tabs&width=340&height=130&small_header=false&adapt_container_width=false&hide_cover=true&show_facepile=false&appId=369870783750134" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> --}}
-								<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fecartac&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=369870783750134" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-							</div>
+              {{-- <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fecartac&tabs&width=340&height=130&small_header=false&adapt_container_width=false&hide_cover=true&show_facepile=false&appId=369870783750134" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> --}}
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fecartac&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=369870783750134"
+                width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
 
-						</aside>
-					</div> <!-- row.// -->
-				</section>	<!-- footer-top.// -->
+          </aside>
+        </div> <!-- row.// -->
+      </section> <!-- footer-top.// -->
 
-				<section class="footer-bottom text-center">
-					<p class="text-muted"> &copy 2021 NodeLab, All rights reserved </p>
-			</section>
-			</div><!-- //container -->
-		</footer>
-			<!-- ========================= FOOTER END // ========================= -->
-
-
+      <section class="footer-bottom text-center">
+        <p class="text-muted"> &copy 2021 NodeLab, Todos los derechos reservados </p>
+      </section>
+    </div><!-- //container -->
+  </footer>
+  <!-- ========================= FOOTER END // ========================= -->
 
 
-	</body>
-	@yield('scripts')
+
+
+</body>
+@yield('scripts')
+
 </html>
