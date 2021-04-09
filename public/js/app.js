@@ -2319,7 +2319,7 @@ __webpack_require__.r(__webpack_exports__);
         nombre: this.model.nombre,
         telefono: this.model.telefono,
         direccion: this.model.direccion,
-        tienda_id: 28,
+        tienda_id: this.idrest,
         productos: this.carrito
       }).then(function (res) {
         if (res.status == 201) {

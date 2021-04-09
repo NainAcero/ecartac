@@ -3,6 +3,7 @@
 @section('styles')
     <link href="{{asset('css/feria/css.css?family=Roboto+Condensed:400,700')}}" type="text/css" rel="stylesheet">
     <link href="{{asset('css/feria/stilos.css')}}" type="text/css" rel="stylesheet">
+    
 @endsection
 
 @section('cabecera')

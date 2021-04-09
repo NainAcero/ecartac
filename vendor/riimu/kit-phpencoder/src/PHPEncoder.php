@@ -11,7 +11,7 @@ namespace Riimu\Kit\PHPEncoder;
  * in specific way.
  *
  * @author Riikka Kalliomäki <riikka.kalliomaki@gmail.com>
- * @copyright Copyright (c) 2014-2018 Riikka Kalliomäki
+ * @copyright Copyright (c) 2014-2020 Riikka Kalliomäki
  * @license http://opensource.org/licenses/mit-license.php MIT License
  */
 class PHPEncoder
@@ -108,12 +108,12 @@ class PHPEncoder
      */
     private function isValidOption($option)
     {
-        if (array_key_exists($option, $this->options)) {
+        if (\array_key_exists($option, $this->options)) {
             return true;
         }
 
         foreach ($this->encoders as $encoder) {
-            if (array_key_exists($option, $encoder->getDefaultOptions())) {
+            if (\array_key_exists($option, $encoder->getDefaultOptions())) {
                 return true;
             }
         }
@@ -150,7 +150,7 @@ class PHPEncoder
         }
 
         foreach ($overrides as $name => $value) {
-            if (!array_key_exists($name, $options)) {
+            if (!\array_key_exists($name, $options)) {
                 throw new InvalidOptionException(sprintf("Invalid encoder option '%s'", $name));
             }
 
@@ -196,7 +196,7 @@ class PHPEncoder
      * @return bool True if values should be recorded, false if not
      * @throws \RuntimeException If a recursive value is detected
      */
-    private function detectRecursion(& $value, array $options, array $recursion)
+    private function detectRecursion(&$value, array $options, array $recursion)
     {
         if ($options['recursion.detect']) {
             if (array_search($value, $recursion, true) !== false) {

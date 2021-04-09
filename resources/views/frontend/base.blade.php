@@ -62,7 +62,6 @@
 		<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
 		<link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
 
-
         <!-- custom javascript -->
 		<script src="{{asset('ecom/js/script.js')}}" type="text/javascript"></script>
 
@@ -146,11 +145,9 @@
         @yield('styles')
     </head>
 	<body>
-
-		<b class="screen-overlay"></b>
+        <b class="screen-overlay"></b>
 
 		@yield('cabecera')
-
 
 		<div class="container">
 
@@ -272,6 +269,8 @@
 
 
 
+        @yield('scripts')
+
 	</body>
-	@yield('scripts')
+
 </html>

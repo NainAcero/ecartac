@@ -11,4 +11,8 @@ class Pedido extends Model
     protected $fillable = [
         'tienda_id', 'nombre', 'telefono', 'direccion', 'estado'
     ];
+
+    public function cartas() {
+        return $this->hasMany(Carta::class);
+    }
 }

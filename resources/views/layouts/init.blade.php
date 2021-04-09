@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="{{asset('assets/plugins/summernote/summernote-bs4.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
   <link href="{{ asset('css/jquery.loadingModal.min.css') }}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -65,10 +67,10 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      
+
       <!-- Notifications Dropdown Menu -->
-      
-      
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -116,10 +118,10 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     @yield('content-header')
-    
+
     <!-- /.content-header -->
-    
-    
+
+
     <!-- Main content -->
     @yield('content')
     <!-- /.content -->
@@ -136,7 +138,7 @@
   <footer class="main-footer">
     <strong>Copyright &copy; 2020 <a href="#"></a></strong>
 
-      
+
 
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0
@@ -174,6 +176,7 @@
 
 <!-- ChartJS -->
 <script src="{{asset('assets/plugins/chart.js/Chart.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 

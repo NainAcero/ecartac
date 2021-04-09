@@ -11,4 +11,8 @@ class Carta extends Model
     protected $fillable = [
         'pedido_id', 'cantidad', 'precio', 'descripcion', 'producto_id'
     ];
+
+    public function producto() {
+        return $this->belongsTo(Producto::class);
+    }
 }
