@@ -17,6 +17,12 @@
                 <p>Home</p>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a href="{{url('pedidos')}}" class="nav-link {{ (request()->is('pedidos')) ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Pedidos</p>
+                </a>
+            </li>
             {{-- <li class="nav-item">
                 <a href="{{url('dashboard')}} " class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
@@ -41,7 +47,7 @@
                 <p>Usuarios</p>
                 </a>
             </li> --}}
-            
+
             @hasanyrole('Admin') {{-- CONVENIO --}}
             <li class="nav-item">
                 <a href="{{url('galerias')}} " class="nav-link">
@@ -85,9 +91,18 @@
             @hasanyrole('Admin') {{-- CONVENIO --}}
             <li class="nav-item">
                 <a href="{{route('personal.index')}} " class="nav-link">
-                
+
                 <i class="far fa-circle nav-icon"></i>
                 <p>Usuarios</p>
+                </a>
+            </li>
+            @endhasanyrole
+            @hasanyrole('Admin') {{-- CONVENIO --}}
+            <li class="nav-item">
+                <a href="{{route('delivery.index')}} " class="nav-link">
+
+                <i class="far fa-circle nav-icon"></i>
+                <p>Delivery</p>
                 </a>
             </li>
             @endhasanyrole
